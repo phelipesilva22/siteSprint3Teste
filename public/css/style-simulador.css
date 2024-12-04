@@ -1,0 +1,338 @@
+@font-face {
+    font-family: 'Fredoka';
+    src: url('../fonts/Fredoka-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    margin: 0px;
+    font-family: "Fredoka";
+    background-color: rgb(228, 228, 228);
+    background-position: center;
+    background-size: cover;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.header {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 90px;
+    z-index: 10;
+    background-color: #aeb5c6;
+}
+
+.header .container {
+    padding-left: 30px;
+    padding-right: 60px;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.header .container img {
+    width: 250px;
+    height: 80px;
+}
+
+.container .navbar {
+    display: flex;
+    width: 1170px;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.container .opcoes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 450px;
+    min-width: 450px;
+    color: #000000;
+    font-size: 22px;
+    font-weight: bold;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.opcao{
+    display: inline-block;
+    transition: transform 0.5s ease;
+    text-decoration: none;
+    color: #0739c2;
+}
+
+.opcao:hover {
+    transform: scale(1.4);
+    cursor: pointer;
+}
+
+.container .botoes {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 220px;
+    min-width: 220px;
+}
+
+.botoes button {
+    width: 100px;
+    height: 30px;
+    border: 0px solid;
+    border-radius: 15px;
+    background-color: #0739c2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Fredoka";
+    transition: transform 0.5s ease;
+}
+
+.botoes button:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.simulador {
+    width: 100%;
+    height: 873px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+}
+
+.caixa-simulador {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px; 
+    padding: 20px;
+    border-radius: 15px;
+    color: #0739c2;
+}
+
+.conteudo{
+    width: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;  
+  
+}
+
+.simulador .campo_tinta, 
+.simulador .campo_primer,
+.simulador .campo_area,
+.simulador .campo_carrocerias,
+.simulador .campo_veiculo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    gap: 10px;
+}
+
+.simulador h2 {
+    font-size: 50px;
+    color: #000000;
+    text-align: center;
+    margin-bottom: -190px;
+
+}
+
+.simulador .campo_tinta input,
+.simulador .campo_primer input, 
+.simulador .campo_carrocerias input,
+.simulador .campo_area input{
+    width: 60%;
+    height: 30px;
+    border: 2px solid #3c404e;
+    box-shadow: 0px 0px 6px rgba(246, 255, 246, 0.14);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: bolder;
+}
+
+
+.botao{
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.botao button{
+    width: 100px;
+    height: 35px;
+    border: 0px solid;
+    border-radius: 15px;
+    background-color: #0739c2;
+    color: white;
+    font-weight: bold;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease;
+    margin-top: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.botao :hover {
+    transform: scale(1.3);
+}
+
+
+
+
+
+.simulador .caixa-simulador {
+    width: 100%;
+    height: 873px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+
+
+.simulador .conteudo span {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+.simulador .campo_veiculo #tipo_de_veiculo{
+    border-radius: 10px;
+    height: 30px;
+    box-shadow: 2px 2px 15px rgba(13, 13, 13, 0.3);
+    text-align: center;
+    font-weight: bolder;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+
+.simulador .campo_veiculo #tipo_de_veiculo:hover{
+     background-color: #afacac;
+    color: rgb(0, 0, 0);
+}
+
+#resultados {
+    width: 100%;
+    height: 873px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: rgb(0, 0, 0);;
+    font-size: 22px;
+  
+}
+
+.hidden {
+    display: none;
+}
+
+ul, li{
+    list-style: none;
+    text-align: center;
+}
+
+p{
+    font-size: 25px;
+    color: rgb(0, 0, 0);
+    font-weight: bolder;
+    transition: transform 1.s ease;
+    margin-bottom: 0;
+}
+
+
+.opcao a{
+    text-decoration: none;
+    font-size: 30px;
+    margin-bottom: 10px;
+    color: #0739c2;
+    font-style: italic;
+    transition: transform 0.3s ease;
+}
+
+.opcao :hover {
+    transform: scale(1.0);
+    cursor: pointer;
+}
+
+.texto-vermelho2{
+    color: red;
+    font-size: 25px;
+}
+
+.texto-vermelho{
+    color: red;
+    font-size: 35px;
+}
+
+.texto-azul{
+    color: blue;
+    font-size: 35px;
+}
+
+.texto-azul2{
+    color:#0739c2;
+    font-size: 35px;
+}
+
+.texto-verde{
+    color: rgb(1, 161, 1);
+    font-size: 35px;
+}
+
+.texto-verde2{
+    color: rgb(1, 161, 1);
+    font-size: 25px;
+}
+
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6d81b5;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #6d81b5;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #6d81b5;
+}
+

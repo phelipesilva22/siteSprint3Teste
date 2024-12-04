@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style-dashboard.css">
+    <script src="js/script-dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script data-jsd-embedded data-key="0e2775f3-461d-4b7e-9bcc-48d3cb207a3a" data-base-url="https://jsd-widget.atlassian.com" src="https://jsd-widget.atlassian.com/assets/embed.js"></script>
+    <title>Enviro App</title>
+</head>
+<body>
+    <div id="cabecalho">
+        <div id="conteudo-cabecalho">
+            <img id="icone-menu" tabindex="-1" src="imgs/menu-icon.png" draggable="false" onclick="mostrarEsconderMenu()">
+            <div id="informacao-usuario">
+                <p>LEANDRO ROBATINO</p>
+                <img src="imgs/sem-avatar.png" draggable="false">
+            </div>
+        </div>
+    </div>
+    <div id="menu">
+        <div id="opcoes">
+            <img id="icone-menu" tabindex="-1" src="imgs/fechar.png" draggable="false" onclick="mostrarEsconderMenu()">
+            <div class="opcao" onclick="dashboard()">
+                <img src="imgs/dashboard.png" id="icone-dashboard" draggable="false"><p>Dashboard</p> 
+            </div>
+            <div class="opcao">
+                <img src="imgs/alerta.png" id="icone-alerta" draggable="false"><p>Alertas</p>
+            </div>
+            <div class="opcao" onclick="cadastrarFabricas()">
+                <img src="imgs/fabrica.png" id="icone-fabrica" draggable="false"><p>Cadastrar Fábricas</p>
+            </div>
+            <div class="opcao" onclick="window.location='http://localhost:3000'">
+                <img src="imgs/icone-bobia.png" id="icone-bobia" draggable="false"><p>Consultar BOBIA</p>
+            </div>
+        </div>
+        <button id="btnSair">Sair</button>
+    </div>
+    <div id="tela-principal">
+        <div id="dashboard">
+            <div id="navbar-dashboard">
+                <img onclick="sairCabine()" id="icone-voltar" src="imgs/voltar.png">
+                <div id="titulo">
+                    <p id="idFabrica">Fabrica Albert Einstein</p>
+                    <p id="idCabine" hidden>Cabine 1</p>
+                </div>
+            </div>
+            <div id="informacao-geral">
+                <div class="grafico">
+                    <canvas id="alertas-cabines"></canvas>
+                </div>
+                <div class="kpi">
+                    <span>CABINES DE PINTURA</span>
+                    <div id="mural-cabines">
+                        <div onclick="entrarCabine()" class="cabine" id="cabine1">1</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine2">2</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine3">3</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine4">4</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine5">5</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine6">6</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine7">7</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine8">8</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine9">9</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine10">10</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine11">11</div>
+                        <div onclick="entrarCabine()" class="cabine" id="cabine12">12</div>
+                    </div>
+                    <div id="legenda">
+                        <div id="on"></div><a>Em Atividade</a>
+                        <div id="off"></div><a>Fora de Atividade</a>
+                    </div>
+                </div>
+                <div class="kpi">
+                    <canvas id="porcentagem-ok"></canvas>
+                </div>
+            </div>
+            <div id="informacao-individual">
+                <div class="grafico">
+                    <canvas id="captacao-sensor" width="800" height="400"></canvas>
+                </div>
+                <div class="kpi">
+                    <span>Média de COV Emitido (Hoje)</span>
+                    <div class="medidor">
+                        <div id="verdeHoje">
+                            <div id="agulhaHoje">
+                            </div>
+                        </div>
+                        <div id="amareloHoje">
+
+                        </div>
+                        <div id="laranjaHoje">
+
+                        </div>
+                        <div id="vermelhoHoje">
+
+                        </div>
+                    </div>
+                    <p id="mediaDia"></p>
+                </div>
+                <div class="kpi">
+                    <span>Média de COV Emitido (Esta Semana)</span>
+                    <div class="medidor">
+                        <div id="verdeSemana">
+                            <div id="agulhaSemana">
+                            </div>
+                        </div>
+                        <div id="amareloSemana">
+
+                        </div>
+                        <div id="laranjaSemana">
+
+                        </div>
+                        <div id="vermelhoSemana">
+
+                        </div>
+                    </div>
+                    <p id="mediaSemana"></p>
+                </div>
+            </div>
+        </div>
+        <div id="cadastrar-fabricas">
+            <p>Cadastrar Nova Fábrica</p>
+            <div id="campos-cadastro">
+                <div class="campos">
+                    <label for="inpNomeFabrica">Nome da Fábrica:</label>
+                    <input type="text" id="inpNomeFabrica" placeholder="Fábrica José dos Pinhais">
+                    <label for="inpQtdCabines">Quantidade de Cabines:</label>
+                    <input type="text" id="inpQtdCabines" placeholder="15">
+                    <label for="inpCEP">CEP:</label>
+                    <input type="text" id="inpCEP" placeholder="12248-700">
+                    <label for="inpRua">Rua:</label>
+                    <input type="text" id="inpRua" placeholder="Av. José dos Pinhais">
+                    <label for="inpNumero">N°:</label>
+                    <input type="text" id="inpNumero" placeholder="1777">
+                    <label for="inpBairro">Bairro:</label>
+                    <input type="text" id="inpBairro" placeholder="Frei Galvão">
+                    <label for="inpCidade">Cidade:</label>
+                    <input type="text" id="inpCidade" placeholder="São José dos Campos">
+                </div>
+            </div>
+            <button id="btnCadastrarFabricas" onclick="cadastrarInfoFabrica()">Cadastrar</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+    function entrarCabine(numeroCabine) {
+    var informacaoIndividual = document.getElementById('informacao-individual')
+    var informacaoGeral = document.getElementById('informacao-geral')
+    var botaoVoltar = document.getElementById('icone-voltar')
+
+    informacaoGeral.style.display = 'none'
+    informacaoIndividual.style.display = 'flex'
+    botaoVoltar.style.display = 'flex'
+
+    }
+
+    setInterval(() => {
+        captarCOV();
+        calcularMediaDia();
+        calcularMediaSemana();
+    }, 5000);
+
+    const ctxA = document.getElementById('captacao-sensor');
+    const ctxB = document.getElementById('alertas-cabines');
+    const ctxC = document.getElementById('porcentagem-ok');
+
+    dadosSensor = []
+    horarioDadosSensor =[]
+    dadosZonaAviso =[]
+    dadosZonaPerigo = []
+
+    function captarCOV() {
+
+    fetch(`/dashboard/captarCOV`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }})
+            .then(resposta => {
+
+            if (resposta.ok) {
+                console.log("Dados COV captados");
+                return resposta.json();
+                } else {
+                console.log("Houve um erro!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).then(dados => {
+                dadosSensor.push(dados[0].nivelCOV)
+                horarioDadosSensor.push(dados[0].horaRegistro)
+                dadosZonaAviso.push(dados[0].zonaAviso)
+                dadosZonaPerigo.push(dados[0].zonaPerigo)
+        atualizarGrafico();
+
+        })
+    }
+             
+    var captacaoSensor = new Chart(ctxA, {
+    type: 'line',
+    data: {
+        labels: horarioDadosSensor,
+        datasets: [{
+        data: dadosSensor,
+        borderColor: '#00CC00',
+        borderWidth: 3,
+        backgroundColor: '#00CC00',
+        },
+        {
+        data: dadosZonaPerigo,
+        borderColor: '#FF0000',
+        borderWidth: 3,
+        backgroundColor: '#FF0000',
+        pointRadius: 0
+        },
+        {
+        data: dadosZonaAviso,
+        borderColor: '#FFAA00',
+        borderWidth: 3,
+        backgroundColor: '#FFAA00',
+        pointRadius: 0
+        }
+        ]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: false
+            },
+            title: {
+                display: true,
+                text: 'Nível de COV Emitido (Tempo Real)',
+                color: '#092f94',
+                font: {
+                    size: 20,
+                    weight: 'bold'
+                }
+            }
+        },
+        scales: {
+        y: {
+            beginAtZero: true,
+            min: 0,
+            max: 50,
+            ticks: {
+                color: '#092f94',
+                stepSize: 5,
+                callback: function(value) {
+                    return value + ' g/m²'
+                },
+                font: {
+                    size: 16,
+                }
+            },
+            title: {
+                color: '#092f94',
+                display: true,
+                text: 'Unidade de Medida (g/m²)',
+                font: {
+                    weight: 'bold',
+                    size: 16,
+                }
+            }
+        },
+        x: {
+            grid: {
+                display: false
+            },
+            ticks: {
+                color: '#092f94',
+                font: {
+                    size: 16,
+                }
+            },
+            title: {
+                color: '#092f94',
+                display: true,
+                text: 'Horário da Captação',
+                font: {
+                    weight: 'bold',
+                    size: 16,
+                }
+            }
+        }
+        }
+    }
+    });
+    
+    const LIMITE_DADOS = 7; // Máximo de pontos no gráfico
+
+    // Função para limitar os dados
+    function limitarDados() {
+        // Mantém apenas os últimos LIMITE_DADOS elementos
+        if (horarioDadosSensor.length > LIMITE_DADOS) {
+            horarioDadosSensor = horarioDadosSensor.slice(-LIMITE_DADOS);
+        }
+        if (dadosSensor.length > LIMITE_DADOS) {
+            dadosSensor = dadosSensor.slice(-LIMITE_DADOS);
+        }
+    }
+    
+    function atualizarGrafico() {
+    if (captacaoSensor) {
+        limitarDados();
+        captacaoSensor.data.labels = horarioDadosSensor; // Atualiza o eixo X
+        captacaoSensor.data.datasets[0].data = dadosSensor; // Atualiza o eixo Y
+        captacaoSensor.update(); // Redesenha o gráfico
+    }
+    }
+    
+    const alertasCabines = new Chart(ctxB, {
+    type: 'bar',
+    data: {
+        labels: ['C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9', 'C10', 'C11', 'C12', 'C13', 'C14', 'C15'],
+        datasets: [{
+        label: 'Quantidade de alertas',
+        data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15],
+        borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+        y: {
+            beginAtZero: true
+        }
+        }
+    }
+    });
+    const porcentagemOk = new Chart(ctxC, {
+    type: 'pie',
+    data: {
+        datasets: [{
+            data: [30, 70],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.6)',
+                'rgba(54, 162, 235, 0.6)',
+                'rgba(255, 206, 86, 0.6)',
+                'rgba(75, 192, 192, 0.6)' 
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: {
+                position: 'top',
+            },
+            tooltip: {
+                enabled: true
+            }
+            
+        }
+    }
+    });
+
+    function calcularMediaDia() {
+
+    fetch(`/dashboard/calcularMediaDia`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }})
+            .then(resposta => {
+
+            if (resposta.ok) {
+                console.log("Média diaria realizada");
+                return resposta.json();
+                } else {
+                console.log("Houve um erro!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).then(dados => {
+            mediaDia.innerHTML = dados[0].media
+            const agulhaHoje = document.getElementById('agulhaHoje');
+            var valor = dados[0].media
+            var novaDiv;
+            if (valor >= 0 && valor < 25) {
+                novaDiv = document.getElementById('verdeHoje');
+            } else if (valor >= 25 && valor < 35) {
+                novaDiv = document.getElementById('amareloHoje');
+            } else if (valor >= 35 && valor < 45) {
+                novaDiv = document.getElementById('laranjaHoje');
+            } else {
+                novaDiv = document.getElementById('vermelhoHoje');
+            }
+
+            // Mover a agulha para a nova div
+            novaDiv.appendChild(agulhaHoje);
+        })
+    }
+
+    function calcularMediaSemana() {
+
+    fetch(`/dashboard/calcularMediaDia`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }})
+            .then(resposta => {
+
+            if (resposta.ok) {
+                console.log("Média semanal realizada");
+                return resposta.json();
+                } else {
+                console.log("Houve um erro!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+
+        }).then(dados => {
+            mediaSemana.innerHTML = dados[0].media
+            const agulhaSemana = document.getElementById('agulhaSemana');
+            var valor = dados[0].media
+            var novaDiv;
+            if (valor >= 0 && valor < 25) {
+                novaDiv = document.getElementById('verdeSemana');
+            } else if (valor >= 25 && valor < 35) {
+                novaDiv = document.getElementById('amareloSemana');
+            } else if (valor >= 35 && valor < 45) {
+                novaDiv = document.getElementById('laranjaSemana');
+            } else {
+                novaDiv = document.getElementById('vermelhoSemana');
+            }
+
+            // Mover a agulha para a nova div
+            novaDiv.appendChild(agulhaSemana);
+        })
+    }
+
+    function cadastrarInfoFabrica() {
+
+    var nomeVar = inpNomeFabrica.value;
+    var qtdCabines = inpQtdCabines.value;
+
+    if (
+        nomeVar == "" ||
+        qtdCabines == ""
+    ) {
+    return alert("Campos em branco\nPor favor, preencha todos os campos")
+    } 
+
+    var codAtivacao = ''
+    var alfabeto = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
+
+    for(var i = 0;i<5;i++){
+        codAtivacao += alfabeto[parseInt(Math.random()*26 + 1)]
+    }
+    
+
+    // Enviando o valor da nova input
+    fetch("/dashboard/cadastrarInfoFabrica", {
+        method: "POST",
+        headers: {
+        "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        qtdCabinesServer: qtdCabines,
+        codAtivacaoServer: codAtivacao
+        }),
+    })
+        .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            alert("Fábrica registrada com sucesso")
+            listar()
+        } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+        })
+        .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        });
+
+    return false;
+    }
+
+    let listaFabricasCadastradas = [];
+
+    function cadastrarInfoEndereco() {
+
+    var nomeFabrica = inpNomeFabrica.value;
+    var cepVar = inpCEP.value;
+    var cidadeVar = inpCidade.value;
+    var bairroVar = inpBairro.value;
+    var numeroVar = inpNumero.value;
+    var logradouroVar = inpRua.value;
+    var nomeFabricaVincular
+
+    if (
+        nomeFabrica == ""||
+    cepVar == "" ||
+    cidadeVar == "" ||
+    bairroVar == "" ||
+    numeroVar == "" ||
+    logradouroVar == ""
+    ) {
+    return alert("Campos em branco\nPor favor, preencha todos os campos")
+    } 
+
+    for (let i = 0; i < listaFabricasCadastradas.length; i++) {
+        if (listaFabricasCadastradas[i].nome == nomeFabrica) {
+            nomeFabricaVincular = listaFabricasCadastradas[i].nome
+            console.log("idFabrica obtido");
+            break;
+        }
+        }
+
+    // Enviando o valor da nova input
+    fetch("/dashboard/cadastrarInfoEndereco", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+        // Agora vá para o arquivo routes/dashboard.js
+        cepServer: cepVar,
+        cidadeServer: cidadeVar,
+        bairroServer: bairroVar,
+        numeroServer: numeroVar,
+        logradouroServer: logradouroVar,
+        nomeFabricaVincularServer: nomeFabricaVincular
+    }),
+    })
+    .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+        alert("Endereço registrado com sucesso")
+        limparFormulario();
+        } else {
+        throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+    })
+    .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+    }
+
+    function listar() {
+        fetch("/empresas/listar", {
+        method: "GET",
+        })
+        .then(function (resposta) {
+            resposta.json().then((empresas) => {
+            empresas.forEach((empresa) => {
+                listaFabricasCadastradas.push(empresa);
+                cadastrarInfoEndereco()
+
+                console.log("listaFabricasCadastradas")
+            });
+            });
+        })
+        .catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+    }
+
+    function limparFormulario(){
+    inpCEP.value;
+    inpCidade.value;
+    inpBairro.value;
+    inpNumero.value;
+    inpRua.value;
+}
+
+</script>

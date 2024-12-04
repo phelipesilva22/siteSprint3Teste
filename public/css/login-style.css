@@ -1,0 +1,82 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+/* Estilo do fundo da página */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #e0e5ec;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Estilo do contêiner de login */
+.login {
+    background-color: #e0e5ec;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 15px #babecc, -8px -8px 15px #ffffff;
+    width: 300px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Estilo dos campos de entrada (input) */
+.login input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    background-color: #e0e5ec;
+    box-shadow: inset 4px 4px 8px #babecc, inset -4px -4px 8px #ffffff;
+    color: #333;
+    transition: box-shadow 0.2s ease;
+}
+
+/* Efeito de foco nos inputs */
+.login input:focus {
+    box-shadow: inset 2px 2px 5px #babecc, inset -2px -2px 5px #ffffff;
+}
+
+/* Estilo do botão de entrar */
+.button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    background-color: #e0e5ec;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 4px 4px 8px #babecc, -4px -4px 8px #ffffff;
+    transition: all 0.2s ease;
+}
+
+.button:hover {
+    box-shadow: 2px 2px 5px #babecc, -2px -2px 5px #ffffff;
+}
+
+.button:active {
+    box-shadow: inset 2px 2px 5px #babecc, inset -2px -2px 5px #ffffff;
+}

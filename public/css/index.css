@@ -1,0 +1,475 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand-Regular.ttf');
+}
+
+body {
+    margin: 0;
+    font-family: 'Quicksand';
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    padding: 20px 0px;
+    background-color: transparent;
+    transition: background-color 0.3s;
+    z-index: 1;
+    
+    .container {
+        display: flex;
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0px 20px;
+            width: 100%;
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+                background-image: url('../imgs/NUVEMBRANCA.png');
+                background-size: cover;
+            }
+            
+            .entrar {
+                width: 50px;
+                height: 50px;
+                background-image: url('../imgs/entrar2-removebg-preview.png');
+                background-size: cover;
+                transition: transform 0.5s ease;
+
+                button{
+                    width: 50px;
+                    height: 50px;
+                    background-color: rgba(0, 0, 0, 0);
+                    border: 2px solid rgba(0, 0, 0, 0);  
+                    background-size: cover;
+                }
+            }
+        }
+        .opcoes {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 600px;
+            min-width: 450px;
+            font-size: 20px;
+            font-weight: bolder;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .opcao{
+            display: inline-block;
+            text-decoration: none;
+            color: whitesmoke;
+            transition: transform 0.3s;
+        }
+    }
+}
+
+header .entrar:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+header .opcao:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+header.scrolled {
+    background-color: whitesmoke;
+    box-shadow:  0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+header.scrolled .container .navbar .opcoes .opcao{
+    color: black;
+}
+
+header.scrolled .container .navbar .logo {
+    width: 50px;
+    height: 50px;
+    background-image: url('../imgs/NUVEMSEMFUNDO.png');
+    background-size: cover;
+}
+
+header.scrolled .container .navbar .entrar {
+    width: 50px;
+    height: 50px;
+    background-image: url('../imgs/entrar-removebg-preview.png');
+    background-size: cover;
+    transition: transform 0.5s ease;
+}
+
+
+
+.login {
+    position: fixed;
+    z-index: 999;
+    background-color: rgb(245, 245, 245);
+    right: -400px;
+    width: 400px;
+    height: 100%;
+    flex-direction: column;
+    transition: right 0.3s ease;
+
+    
+    #sair {
+        position: absolute;
+        font-size: 40px;
+        top: 15px;
+        right: 5%;
+        font-weight: bold;
+        border: transparent;
+        height: 40px;
+        width: 40px;
+        background-color: transparent;
+        transition: transform 0.5s ease;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        margin: 40px;
+        
+        input{
+            border: 1px solid black;
+            border-radius: 5px;
+            height: 40px;
+            outline: none;
+        }
+        
+        h1{
+            padding-top: 6%;
+            font-size: 40px;
+        }
+        button{
+            cursor: pointer;
+            border: transparent;
+            border-radius: 5px;
+            font-size: 30px;
+            text-align: start;
+            height: 40px;
+            margin-bottom: 20px;
+        }
+
+        .campo-cadastro{
+            display: flex;
+            align-items: center;
+            width: 100%;
+            position: relative;
+            transition: padding-right 0.5s ease;
+
+            p {
+                font-size: 30px;
+                padding-bottom: 20px;
+                cursor: pointer;
+            }
+
+        }
+
+    }
+
+    .campo-cadastro button:hover {
+        padding-right: 10px;
+    }
+    
+    .campo-cadastro p:hover {
+        padding-left: 5px;
+    }
+    
+    
+    #entrar{
+        background-color: #092f94;
+        opacity: 0.8;
+        transition: opacity 0.5s;
+        font-weight: bold;
+    }
+    
+    #cadastro{
+        background-color: transparent;
+    }
+}
+
+.login.mostrar{
+    right: 0;
+}
+
+.login #sair:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.login #entrar:hover{
+    opacity: 1;
+}
+
+
+.carrosel {
+    position: relative;
+    width: 100%;
+    height: 700px;
+    overflow: hidden;
+    color: whitesmoke;
+    box-shadow: inset 20px 20px 100px rgba(0, 0, 0, 0.7),
+                inset -20px -20px 100px rgba(0, 0, 0, 0.7);
+    
+    .slider {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        text-align: center;
+        transition: transform 0.5s ease-in-out;
+
+        .slide1 {
+            background-image: url(../imgs/slide1.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100%;
+
+        }
+        .slide2 {
+            background-image: url(../imgs/slide2.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100%;
+
+        }
+        .slide3 {
+            background-image: url(../imgs/slide3.jpg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-width: 100%;
+
+        }
+    }
+    
+    span{
+        font-size: 40px;
+    }
+    h1 {
+         font-size: 100px;
+    }
+    
+    button {
+        height: 40px;
+        width: 200px;
+        font-weight: bold;
+        border-radius: 50px;
+        font-size: 20px;
+        border: 0;
+        color: whitesmoke;
+        background-color: #0E2A71;
+        transition: 0.2s ease;
+    }
+}
+
+.carrosel button:hover{
+    transform: scale(1.1);
+    filter: brightness(1.2); 
+}
+
+.carrosel button:active{
+    transform: scale(0.8);
+    filter: brightness(0.8); 
+}
+
+
+.slider-nav {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+
+    .navegador{
+        width: 10px;
+        height: 10px;
+        background-color: gray;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+}
+
+.navegador.active{
+    background-color: #fff;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 75px;
+    background-color: whitesmoke;
+}
+
+.info-index {
+    width: 100%;
+    height: 100vh;
+    font-size: 25px;
+    background-size: cover;
+    background-position: center;
+    background-color: whitesmoke;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    height: 500px;
+}
+
+.info-index .texto-index {
+    height: 100%;
+    width: 80%;
+    text-align: start;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-index2 {
+    width: 100%;
+    height: 100vh;
+    font-size: 25px;
+    background-size: cover;
+    background-position: center;
+    background-color: #0E2A71;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    height: 500px;
+}
+
+.info-index2 .texto-index2 {
+    height: 100%;
+    width: 80%;
+    text-align: start;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.info-index2 .texto-index2 h2{
+    margin-bottom: 20px;
+    color: #a4bcfc;
+}
+
+.info-index .texto-index button{
+    height: 10%;
+    width: 30%;
+    font-weight: bold;
+    border-radius: 50px;
+    font-size: 20px;
+    border: 0;
+    color: whitesmoke;
+    background-color: #0E2A71;
+    transition: 0.2s ease;
+}
+
+.info-index .texto-index button:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2); 
+}
+
+.info-index .texto-index button:active {
+    transform: scale(0.8);
+    filter: brightness(0.8); 
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#0E2A71, #000000);
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    height: 100px;
+    font-size: 24px;
+    color: #f5f5f5;
+}
+
+.footer .container .caixa {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: left;
+    height: 100px;
+    span {
+        font-size: 24px;
+        font-weight: bold;
+        color: #f5f5f5;
+    }
+
+    a {
+        font-size: 18px;
+        color: #EEEEEE;
+    }
+
+    .icones {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+.footer .container .caixa1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: left;
+    height: 70px;
+    span {
+        font-size: 24px;
+        font-weight: bold;
+        color: #0E2A71;
+    }
+
+    a {
+        font-size: 18px;
+        color: #EEEEEE;
+    }
+
+    .icones {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+

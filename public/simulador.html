@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador / Enviro Sense</title>
+    <link rel="stylesheet" href="css/style-simulador.css">
+    <link rel="icon" type="image/png" href="images/enviro-sense-logo-extenso.png">
+    <link rel="shortcut icon" href="images/enviro-sense-logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                </div>
+                <div class="opcoes">
+                    <a class="opcao" href="index.html">Home</a>
+                    <a class="opcao" href="sobre-nos.html">Sobre Nós</a>
+                    <a class="opcao" href="nossos-servicos.html">Nossos Serviços</a>
+                </div>
+                <div class="entrar">
+                    <button onclick="mostrarMenu()"></button>
+                </div>
+            </div> 
+        </div>
+    </header>
+    <div class="simulador" id="div_simulador">
+        <h2>Simulador Financeiro</h2>
+        <div class="caixa-simulador">
+            <div class="conteudo">
+                <div class="campo_tinta">
+                    <span>Quantidade de tinta de acabamento utilizada mensalmente (L):</span> 
+                    <input type="number" id="input_tinta">
+                </div>
+                <div class="campo_primer">
+                    <span>Quantidade de primer gastos em sua fábrica (L):</span>
+                    <input type="number" id="input_primer">
+                </div>
+
+                <div class="campo_area">
+                    <span>Área de carrocerias pintadas (m²):</span>
+                    <input type="number" id="input_area_carroceria">
+                </div>
+
+                <div class="campo_carrocerias">
+                    <span>Número de carrocerias pintadas mensalmente:</span> 
+                    <input type="number" id="input_num_carroceria">
+                </div>
+
+                
+                <div class="campo_veiculo">
+                    <span>Qual o tipo de veículo produzido em sua fábrica?</span>
+                    <select id="tipo_de_veiculo">
+                        <option value="carro">Automoveis</option>
+                        <option value="caminhao">Cabines de caminhões, carrocerias e caminhonetes</option>
+                        <option value="onibus">Ônibus, trator e veículos agrícolas</option>
+                    </select>
+                </div>
+                
+                <div class="botao">
+                    <button onclick="calcularMonitoramentoCOV()">Calcular</button>
+                </div>  
+            </div>
+        </div>
+    </div>
+
+        
+    </div>
+    <script src="js/simulador.js"></script>
+</body>
+</html>

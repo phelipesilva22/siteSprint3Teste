@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/index.css">
+    <title>Enviro Sense</title>
+</head>
+<body>
+    <div class="login" id="menuLogin">
+        <div class="container">
+            <button id="sair" onclick="mostrarMenu()">
+                <img height="20px" width="20px" src="imgs/fechar.png">
+            </button>
+            <h1>Entrar</h1>
+            <input type="text" id="inp_email" placeholder="Insira seu E-mail"><br>
+            <input type="password" id="inp_senha" placeholder="Insira sua senha"><br>
+            <button id="entrar" onclick="entrar()">Entrar</button>
+            <div class="campo-cadastro" onclick="window.location = 'cadastro.html'"">
+                <button id="cadastro">Criar Conta</button>
+                <p>&rarr;</p>
+            </div>
+        </div>
+    </div>
+
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                </div>
+                <div class="opcoes">
+                    <a class="opcao" href="index.html">Home</a>
+                    <a class="opcao" href="sobre-nos.html">Sobre Nós</a>
+                    <a class="opcao" href="nossos-servicos.html">Nossos Serviços</a>
+                </div>
+                <div class="entrar">
+                    <button onclick="mostrarMenu()"></button>
+                </div>
+            </div> 
+        </div>
+    </header>
+    
+        <div class="carrosel">
+            <div class="slider">
+                <div class="slide1">
+                        <h1><b>Enviro Sense</b></h1>
+                        <span>
+                            <b>Controle</b> a emissão, <b>proteja</b> o futuro.<br>
+                            <b>Monitoramento de COV</b> para um amanhã <b>limpo e seguro</b>.
+                        </span>
+                </div>
+                <div class="slide2">
+                        <h1><b>Simulador</b></h1>
+                        <span>
+                            Faça uma rápida simulação<br>
+                            E descubra se sua fábrica esta nos conformes
+                        </span><br><br>
+                        <p><button onclick="window.location.href='simulador2.html'">Simular</button></p>
+                </div>
+                <div class="slide3">
+                        <h1><b>Sobre nós</b></h1>
+                        <span>
+                            Interessado em nos conhecer melhor<br>
+                            Clique no botão abaixo</span>
+                        <br><br>
+                        <p><button onclick="window.location.href='sobre-nos.html'">Nos conhecer</button></p>
+                </div>
+                
+            </div>
+            <div class="slider-nav">
+                <span class="navegador"></span>
+                <span class="navegador"></span>
+                <span class="navegador"></span>
+            </div>
+        </div>
+        <div class="info-index">
+            <div class="texto-index">
+                <h2>Monitoramento inteligente para um futuro mais sustentável.</h2>
+                <p>Nossa tecnologia de monitoração de emissões de COVs no processo de pintura automotiva oferece uma solução inovadora e eficaz para reduzir o impacto ambiental da indústria. Com sistemas de monitoramento em tempo real, conseguimos identificar as emissões durante todo o processo de produção, permitindo que os padrões ambientais sejam atendidos de maneira precisa e eficiente.
+                </p>
+            </div>
+        </div>
+        <div class="info-index2">
+            <div class="texto-index2">
+                <h2>Reduza custos e riscos com soluções eficazes para o controle de emissões de COV</h2>
+                <p>Otimizamos o controle das emissões no processo de pintura automotiva, reduzindo custos operacionais, riscos ambientais e previnindo a aplicação de multas. Com tecnologia avançada, garantimos conformidade regulatória e eficiência, tornando sua empresa mais sustentável e competitiva.
+                </p>
+            </div>
+        </div>
+        <div class="info-index">
+            <div class="texto-index">
+                <h2>Saiba como podemos otimizar o controle de emissões em sua linha de produção.</h2>
+                <button onclick="window.location.href='nossos-servicos.html'">Clique aqui!</button>
+            </div>
+        </div>
+    
+    <!--Footer-->
+    <div class="footer">
+        <div class="container">
+            <b>&#169; Enviro Sense</b>
+            <div class="caixa">
+                <span>Empresa</span>
+                <a>Nossa Equipe</a>
+                <a>Fundação</a>
+            </div>
+            <div class="caixa">
+                <span>Serviços</span>
+                <a>Instalação</a>
+                <a>Fale Conosco</a>
+            </div>
+            <div class="caixa1">
+                <span>Redes Sociais</span>
+                <div class="icones">
+                    <img src="../imgs instagram-icon.png">
+                    <img src="images/linkedin-icon.png">
+                    <img src="images/twitter-icon.png">
+                    <img src="images/facebook-icon.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html>
+<script>
+    function entrar() {
+        
+        var emailVar = inp_email.value;
+        var senhaVar = inp_senha.value;
+        
+        if(!validarInputs(emailVar,senhaVar)){
+            return 
+        }
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+    
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+    
+            if (resposta.ok) {
+                console.log(resposta);
+    
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.idFuncionario;
+                });
+            
+                
+                    limparFormulario()
+                    window.location.href = "dashboard.html";
+                    
+                    
+            } else {
+    
+                console.log("Houve um erro ao tentar realizar o login!");
+    
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+    
+                
+            }
+    
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+    
+        return false;
+    }
+
+    function limparFormulario(){
+    
+    inp_email.value = ""
+    inp_senha.value = ""
+    
+  }
+
+  window.addEventListener('scroll', function() {
+    const navbar = document.getElementById('navbar');
+    if (window.scrollY > 50) { // Mude 50 para o valor que preferir
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+</script>

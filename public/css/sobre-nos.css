@@ -1,0 +1,379 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand-Regular.ttf');
+}
+
+body {
+    margin: 0;
+    font-family: 'Quicksand';
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    padding: 20px 0px;
+    background-color: #0E2A71;
+    transition: background-color 0.3s;
+    z-index: 1;
+    
+    .container {
+        display: flex;
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0px 20px;
+            width: 100%;
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+                background-image: url('../imgs/NUVEMBRANCA.png');
+                background-size: cover;
+            }
+            
+            .entrar {
+                width: 50px;
+                height: 50px;
+                background-image: url('../imgs/entrar2-removebg-preview.png');
+                background-size: cover;
+                transition: transform 0.5s ease;
+
+                button{
+                    width: 50px;
+                    height: 50px;
+                    background-color: rgba(0, 0, 0, 0);
+                    border: 2px solid rgba(0, 0, 0, 0);  
+                    background-size: cover;
+                }
+            }
+        }
+        .opcoes {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 600px;
+            min-width: 450px;
+            font-size: 20px;
+            font-weight: bold;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .opcao{
+            display: inline-block;
+            text-decoration: none;
+            color: whitesmoke;
+            transition: transform 0.3s;
+        }
+    }
+}
+
+header .entrar:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+header .opcao:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+header.scrolled {
+    background-color: whitesmoke;
+    box-shadow:  0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+header.scrolled .container .navbar .opcoes .opcao{
+    color: black;
+}
+
+header.scrolled .container .navbar .logo {
+    width: 50px;
+    height: 50px;
+    background-image: url('../imgs/NUVEMSEMFUNDO.png');
+    background-size: cover;
+}
+
+header.scrolled .container .navbar .entrar {
+    width: 50px;
+    height: 50px;
+    background-image: url('../imgs/entrar-removebg-preview.png');
+    background-size: cover;
+    transition: transform 0.5s ease;
+}
+
+
+.login {
+    padding-top: 50px;
+    position: fixed;
+    z-index: 2;
+    height: max-content;
+    background-color: rgb(245, 245, 245);
+    right: 0;
+    width: 400px;
+    height: 100%;
+    display: none;
+    flex-direction: column;
+    transition: transform ease;
+}
+
+.login #sair {
+    position: absolute;
+    font-size: 40px;
+    top: 15px;
+    right: 5%;
+    font-weight: bold;
+    border: transparent;
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    transition: transform 0.5s ease;
+}
+
+.login #sair:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.login .container {
+    display: flex;
+    flex-direction: column;
+    margin: 40px;
+}
+
+.login input{
+    border: 1px solid black;
+    border-radius: 5px;
+    height: 40px;
+    outline: none;
+}
+
+.login h1{
+    font-size: 40px;
+}
+
+.login button{
+    cursor: pointer;
+    border: transparent;
+    border-radius: 5px;
+    font-size: 30px;
+    text-align: start;
+    height: 40px;
+    margin-bottom: 20px;
+}
+
+.login #entrar{
+    background-color: #092f94;
+    opacity: 0.8;
+    transition: opacity 0.5s;
+    font-weight: bold;
+}
+
+.login #entrar:hover{
+    opacity: 1;
+}
+
+.login #cadastro{
+    background-color: transparent;
+}
+
+.home {
+    width: 100%;
+    height: 600px;
+    font-size: 30px;
+    background-size: cover;
+    background-position: center;
+    background-color: #0E2A71;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    padding-top: 80px;
+    height: 500px;
+}
+
+.home .texto-home {
+    height: 80%;
+    width: 70%;
+    padding-top: 5%;
+    text-align: justify;
+}
+
+.home .texto-home h2 {
+    margin-bottom: 20px;
+    color: #a4bcfc;
+}
+
+.home .texto-home p {
+    color: white;
+}
+
+.informacoes1 {
+    width: 100%;
+    height: 600px;
+    font-size: 30px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+.informacoes2 {
+    width: 100%;
+    height: 600px;
+    font-size: 30px;
+    background-color: #0E2A71;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+.informacoes3 {
+    width: 100%;
+    height: 600px;
+    font-size: 30px;
+    background-color: whitesmoke;
+    display: flex;
+    padding-bottom: 5% ;
+    justify-content: center;
+    align-items: center;
+    height: 500px;
+}
+
+.informacoes1 .texto-informacoes1 {
+    padding-top: 5%;
+    height: 80%;
+    width: 50%;
+}
+
+.informacoes1 .texto-informacoes1 h2 {
+    color: #0E2A71;
+}
+
+.informacoes1 .texto-informacoes1 p {
+    color: black;
+}
+.informacoes2 .texto-informacoes2 {
+    padding-top: 5%;
+    height: 80%;
+    width: 50%;
+}
+
+.informacoes2 .texto-informacoes2 h2 {
+    color: #a4bcfc;
+}
+
+.informacoes2 .texto-informacoes2 p {
+    color: white;
+}
+
+.informacoes3 .texto-informacoes3 {
+    height: 80%;
+    width: 50%;
+}
+
+.informacoes3 .texto-informacoes3 h2 {
+    color: #0E2A71;
+}
+
+.informacoes3 .texto-informacoes3 p {
+    color: black;
+}
+
+.informacoes1 .imagem-missao {
+    background-image: url('../imgs/missao.png');
+    background-size: cover;
+    background-position: center;
+    height: 80%;
+    width: 30%;
+}
+.informacoes2 .imagem-visao {
+    background-image: url('../imgs/visao.png');
+    background-size: cover;
+    background-position: center;
+    height: 70%;
+    width: 30%;
+}
+.informacoes3 .imagem-valores {
+    background-image: url('../imgs/valores.png');
+    background-size: cover;
+    background-position: center;
+    height: 80%;
+    width: 30%;
+}
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(#0E2A71, #000000);
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+}
+
+.footer .container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 1000px;
+    height: 100px;
+    font-size: 24px;
+    color: #f5f5f5;
+}
+
+.footer .container .caixa {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: left;
+    height: 100px;
+    span {
+        font-size: 24px;
+        font-weight: bold;
+        color: #f5f5f5;
+    }
+
+    a {
+        font-size: 18px;
+        color: #EEEEEE;
+    }
+
+    .icones {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}
+
+.footer .container .caixa1 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    text-align: left;
+    height: 70px;
+    span {
+        font-size: 24px;
+        font-weight: bold;
+        color: #0E2A71;
+    }
+
+    a {
+        font-size: 18px;
+        color: #EEEEEE;
+    }
+
+    .icones {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+    }
+}

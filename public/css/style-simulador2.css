@@ -1,0 +1,259 @@
+@font-face {
+    font-family: 'Quicksand';
+    src: url('../fonts/Quicksand-Regular.ttf');
+}
+
+body {
+    margin: 0;
+    font-family: 'Quicksand';
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    padding: 20px 0px;
+    background-color: #0E2A71;
+    transition: background-color 0.3s;
+    z-index: 1;
+    
+    .container {
+        display: flex;
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            padding: 0px 20px;
+            width: 100%;
+            
+            .logo {
+                width: 50px;
+                height: 50px;
+                background-image: url('../imgs/NUVEMBRANCA.png');
+                background-size: cover;
+            }
+            
+            .entrar {
+                width: 50px;
+                height: 50px;
+                background-image: url('../imgs/entrar2-removebg-preview.png');
+                background-size: cover;
+                transition: transform 0.5s ease;
+
+                button{
+                    width: 50px;
+                    height: 50px;
+                    background-color: rgba(0, 0, 0, 0);
+                    border: 2px solid rgba(0, 0, 0, 0);  
+                    background-size: cover;
+                }
+            }
+        }
+        .opcoes {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            width: 600px;
+            min-width: 450px;
+            font-size: 15px;
+            font-weight: bold;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .opcao{
+            display: inline-block;
+            text-decoration: none;
+            color: whitesmoke;
+            transition: transform 0.3s;
+        }
+    }
+}
+
+header .entrar:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+header .opcao:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+header.scrolled {
+    background-color: whitesmoke;
+    box-shadow:  0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+header.scrolled .container .navbar .opcoes .opcao{
+    color: black;
+}
+
+header.scrolled .container .navbar .logo {
+    width: 50px;
+    height: 50px;
+    background-image: url('../imgs/NUVEMSEMFUNDO.png');
+    background-size: cover;
+}
+
+header.scrolled .container .navbar .entrar {
+    width: 50px;
+    height: 50px;
+    background-image: url('../imgs/entrar-removebg-preview.png');
+    background-size: cover;
+    transition: transform 0.5s ease;
+}
+
+
+ h2 {
+    font-size: 50px;
+    color: #000000;
+    text-align: center;
+    margin-bottom: 10px;
+
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+input{
+    width: 60%;
+    height: 20px;
+    border: 2px solid #3c404e;
+    box-shadow: 0px 0px 6px rgba(246, 255, 246, 0.14);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bolder;
+}
+
+.conteudo {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.timeline {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.timeline-step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ddd;
+    color: #fff;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.timeline-step.completed {
+    background: #0739c2;
+}
+
+.timeline-line {
+    flex-grow: 1;
+    height: 4px;
+    background: #ddd;
+}
+
+.step {
+    display: none;
+}
+
+.step.active {
+    display: block;
+}
+
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.botoes button {
+    width: 100px;
+    height: 30px;
+    border: 0px solid;
+    border-radius: 15px;
+    background-color: #0739c2;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Fredoka";
+    transition: transform 0.5s ease;
+}
+
+.botoes button:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+}
+
+.navigation-buttons button {
+    background: #0739c2;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #000000;
+}
+
+button.hidden {
+    visibility: hidden;
+}
+
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #e0e0e0;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #6d81b5;
+    border-radius: 10px;
+    border: 2px solid #e0e0e0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #6d81b5;
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #6d81b5;
+}
+
+.caixa-simulador {
+    width: 100%;
+    height: 200vh;
+    font-size: 30px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 80px;
+    height: 500px;
+}

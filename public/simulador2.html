@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador / Enviro Sense</title>
+    <link rel="stylesheet" href="css/style-simulador2.css">
+    <link rel="icon" type="image/png" href="images/enviro-sense-logo-extenso.png">
+    <link rel="shortcut icon" href="images/enviro-sense-logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                </div>
+                <div class="opcoes">
+                    <a class="opcao" href="index.html">Home</a>
+                    <a class="opcao" href="sobre-nos.html">Sobre Nós</a>
+                    <a class="opcao" href="nossos-servicos.html">Nossos Serviços</a>
+                </div>
+                <div class="entrar">
+                    <button onclick="mostrarMenu()"></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="caixa-simulador">
+        <main class="conteudo">
+            <!-- Linha do Tempo -->
+            <div class="timeline">
+                <div class="timeline-step completed" data-step="1">1</div>
+                <div class="timeline-line"></div>
+                <div class="timeline-step" data-step="2">2</div>
+                <div class="timeline-line"></div>
+                <div class="timeline-step" data-step="3">3</div>
+            </div>
+
+            <!-- Formulário por Etapas -->
+            <form id="simulador-form">
+                <!-- Etapa 1 -->
+                <section class="step active" data-step="1">
+                    <h1>Etapa 1: Insira os Dados Iniciais</h1>
+                    <label for="input_tinta">Quantidade de tinta de acabamento (L):</label><br>
+                    <input type="number" id="input_tinta" required><br>
+
+                    <label for="input_primer">Quantidade de primer utilizado (L):</label><br>
+                    <input type="number" id="input_primer" required>
+                </section>
+
+                <!-- Etapa 2 -->
+                <section class="step" data-step="2">
+                    <h1>Etapa 2: Dados Complementares</h1>
+                    <label for="input_area_carroceria">Área de carrocerias pintadas (m²):</label><br>
+                    <input type="number" id="input_area_carroceria" required><br>
+
+                    <label for="input_num_carroceria">Número de carrocerias mensais:</label><br>
+                    <input type="number" id="input_num_carroceria" required><br>
+
+                    <label for="tipo_de_veiculo">Tipo de veículo produzido:</label>
+                    <select id="tipo_de_veiculo" required>
+                        <option value="carro">Automóveis</option>
+                        <option value="caminhao">Caminhões</option>
+                        <option value="onibus">Ônibus</option>
+                    </select>
+                </section>
+
+                <!-- Etapa 3 -->
+                <section class="step" data-step="3">
+                    <h1>Etapa 3: Resultado</h1>
+                    <div id="resultado">
+                        <p>Aguarde enquanto calculamos o resultado...</p>
+                    </div>
+                </section>
+
+                <!-- Botões de Navegação -->
+                <div class="navigation-buttons">
+                    <button type="button" id="prevBtn" class="hidden">Anterior</button>
+                    <button type="button" id="nextBtn">Próximo</button>
+                </div>
+            </form>
+        </main>
+    </div>
+    <script src="js/simulador2.js"></script>
+</body>
+
+</html>

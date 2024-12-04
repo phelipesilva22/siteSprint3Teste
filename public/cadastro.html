@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <script src="js/cadastro.js"></script>
+    <title>Enviro App</title>
+</head>
+<body onload="listar()">
+    <div id="tela-principal">
+        <div id="cadastrar-usuarios">
+            <p>Cadastrar Novo Usuário</p>
+            <div id="campos">
+                <label for="inpCodigoFabrica">Código da Fábrica</label>
+                <input type="text" id="inpCodigoFabrica" maxlength="5" style="text-transform: uppercase;" placeholder="A3X7V">
+                <label for="inpNome">Nome:</label>
+                <input type="text" id="inpNome" placeholder="Claudio Frizzarini">
+                <label for="inpEmail">E-mail:</label>
+                <input type="text" id="inpEmail" placeholder="claudio.frizzarini@email.com">
+                <label for="inpSenha">Senha:</label>
+                <div id="senha-visualizar">
+                    <input type="password" id="inpSenha">
+                    <img id="imgSenha" src="imgs/esconder.png" onclick="mostrarSenha()">
+                </div>
+                <label for="inpConfirmarSenha">Confirmar Senha:</label>
+                <input type="password" id="inpConfirmarSenha">
+            </div>
+            <button id="btnCadastrarUsuario" onclick="cadastrar()">Cadastrar</button>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+  // Array para armazenar empresas cadastradas para validação de código de ativação 
+  let listaEmpresasCadastradas = [];
+
+  function cadastrar() {
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = inpNome.value;
+    var emailVar = inpEmail.value;
+    var senhaVar = inpSenha.value;
+
+    var codigoVar = inpCodigoFabrica.value.toUpperCase();
+    var idEmpresaVincular
+    var confirmacaoSenhaVar = inpConfirmarSenha.value;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      codigoVar == "" ||
+      confirmacaoSenhaVar == "" 
+    ) {
+     return alert("Campos em branco\nPor favor, preencha todos os campos")
+    } 
+    if(!validarInputs(emailVar,senhaVar)){
+            return 
+        }
+    if(senhaVar != confirmacaoSenhaVar){
+      return alert("Senhas não coincidem")
+    }
+
+    // Verificando se o código de ativação é de alguma empresa cadastrada
+    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
+      if (listaEmpresasCadastradas[i].codAtivacao == codigoVar) {
+        idEmpresaVincular = listaEmpresasCadastradas[i].idFabrica
+        console.log("Código de ativação válido.");
+        break;
+      }
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // Agora vá para o arquivo routes/usuario.js
+        idEmpresaVincularServer: idEmpresaVincular,
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          setTimeout(() => {
+            window.location = "index.html";
+          }, "1000");
+
+          limparFormulario();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
+  // Listando empresas cadastradas 
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresasCadastradas.push(empresa);
+
+            console.log("listaEmpresasCadastradas")
+            console.log(listaEmpresasCadastradas[0].codAtivacao)
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function limparFormulario(){
+    inpCodigoFabrica.value = ""
+    inpNome.value = ""
+    inpEmail.value = ""
+    inpSenha.value = ""
+    codigo_input.value = ""
+    inpConfirmarSenha.value = ""
+  }
+</script>
